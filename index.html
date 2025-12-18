@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grau de Bike | Evolução Gabriel Pereira</title>
+  <style>
+    :root {
+      --verde: #1db954;
+      --azul: #0a2540;
+      --cinza: #111;
+      --branco: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a2540, #1db954);
+      color: var(--branco);
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: var(--verde);
+      color: var(--cinza);
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 80px 20px;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--verde);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--verde);
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      background: #000;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1>Grau de Bike</h1>
+      <p>Evolução real, técnica e constância. A trajetória de Gabriel Henrique Pereira no grau.</p>
+      <a href="#trajetoria" class="btn">Ver Evolução</a>
+    </div>
+  </header>
+
+  <!-- TRAJETÓRIA -->
+  <section id="trajetoria">
+    <div class="container">
+      <h2>Minha Trajetória</h2>
+      <p>Ganhei minha primeira bike aos 11 anos, uma aro 20 genérica. No início, apenas observava meu irmão empinar. Isso despertou o interesse pela técnica do grau.</p>
+      <p>Depois veio a Viking X, onde comecei os treinos de verdade: levantamento da roda, controle do freio traseiro e postura correta. Mesmo voltando para uma bike genérica mais tarde, mantive os treinos e evoluí na base da repetição.</p>
+    </div>
+  </section>
+
+  <!-- FUNDAMENTOS -->
+  <section>
+    <div class="container">
+      <h2>Fundamentos do Grau</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Controle</h3>
+          <p>Uso preciso do freio traseiro para manter e corrigir o grau.</p>
+        </div>
+        <div class="card">
+          <h3>Equilíbrio</h3>
+          <p>Encontrar e segurar o ponto de equilíbrio com constância.</p>
+        </div>
+        <div class="card">
+          <h3>Postura</h3>
+          <p>Distribuição correta do peso e posição do corpo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVOLUÇÃO -->
+  <section>
+    <div class="container">
+      <h2>Evolução</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Início</h3>
+          <p>Dificuldade para levantar a roda e pouco controle.</p>
+        </div>
+        <div class="card">
+          <h3>Intermediário</h3>
+          <p>Maior tempo em grau e correções mais rápidas.</p>
+        </div>
+        <div class="card">
+          <h3>Atual</h3>
+          <p>Estabilidade, confiança e execução mais limpa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container" style="text-align:center;">
+      <h2>Acompanhe a Evolução</h2>
+      <p>Treino, repetição e foco. O grau é construção diária.</p>
+      <a href="#" class="btn">Ver Vídeos</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© Gabriel Henrique Pereira – Grau de Bike</p>
+  </footer>
+
+</body>
+</html>

@@ -1,1 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bike Grau 2D</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    canvas {
+      background: linear-gradient(#4facfe, #00f2fe);
+      border: 3px solid #000;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 20px;
+      color: #fff;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="game" width="900" height="400"></canvas>
+<div class="hint">
+  ↑ Grau | Espaço: Pular
+</div>
+
+<script>
+/* =====================
+   CONFIGURAÇÕES BÁSICAS
+===================== */
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const chãoY = 300;
+const gravidade = 0.6;
+
+/* =====================
+   BIKE
+===================== */
+const bike = {
+  x: 150,
+  y: chãoY,
+  width: 80,
+  height: 40,
+  vy: 0,
+  angle: 0,
+  angularVelocity: 0,
+  noChao: true
+};
+
+/* =====================
+   OBSTÁCULOS
+===================== */
+let obstacles = [];
+let spawnTimer = 0;
+
+/* =====================
+   CONTROLES
+===================== */
+const keys = {};
+
+document.addEventListener("keydown", e => keys[e.code] = true);
+document.addEventListener("keyup", e => keys[e.code] = false);
+
+/* =====================
+   LOOP PRINCIPAL
+===================== */
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+/* =====================
+   UPDATE
+===================== */
+function update() {
+  // Grau (empinar)
+  if (keys["ArrowUp"]) {
+    bike.angularVelocity -= 0.002;
+  } else {
+    bike.angularVelocity += 0.001;
+  }
+
+  bike.angle += bike.angularVelocity;
+  bike.angularVelocity *= 0.98;
+
+  // Limites do grau
+  bike.angle = Math.max(-0.6, Math.min(0.4, bike.angle));
+
+  // Pulo
+  if (keys["Space"] && bike.noChao) {
+    bike.vy = -12;
+    bike.noChao = false;
+  }
+
+  // Gravidade
+  bike.vy += gravidade;
+  bike.y += bike.vy;
+
+  if (bike.y >= chãoY) {
+    bike.y = chãoY;
+    bike.vy = 0;
+    bike.noChao = true;
+  }
+
+  // Obstáculos
+  spawnTimer++;
+  if (spawnTimer > 120) {
+    obstacles.push({
+      x: canvas.width,
+      y: chãoY,
+      width: 30,
+      height: 40
+    });
+    spawnTimer = 0;
+  }
+
+  obstacles.forEach(o => o.x -= 5);
+  obstacles = obstacles.filter(o => o.x + o.width > 0);
+}
+
+/* =====================
+   DRAW
+===================== */
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Chão
+  ctx.fillStyle = "#2ecc71";
+  ctx.fillRect(0, chãoY + 20, canvas.width, canvas.height);
+
+  // Obstáculos
+  ctx.fillStyle = "#333";
+  obstacles.forEach(o => {
+    ctx.fillRect(o.x, o.y - o.height, o.width, o.height);
+  });
+
+  // Bike
+  ctx.save();
+  ctx.translate(bike.x, bike.y);
+  ctx.rotate(bike.angle);
+
+  // Corpo
+  ctx.fillStyle = "#e74c3c";
+  ctx.fillRect(-40, -20, 80, 20);
+
+  // Rodas
+  ctx.fillStyle = "#000";
+  ctx.beginPath();
+  ctx.arc(-30, 0, 12, 0, Math.PI * 2);
+  ctx.arc(30, 0, 12, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
+
+loop();
+</script>
+
+</body>
+</html>
 
